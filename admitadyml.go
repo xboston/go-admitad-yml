@@ -218,6 +218,10 @@ type Param struct {
 
 // Validate offer
 func (o Offer) Validate() error {
+
+	if strings.Index(o.Url, "?") >= 0 {
+		return fmt.Errorf("Url is incorrect: %s", o.Url)
+	}
 	if utf8.RuneCountInString(o.Id) > 20 {
 		return errors.New("Id more than 20 cahrs")
 	}
