@@ -19,7 +19,7 @@ func NewYML(name, company, url string) Catalog {
 	yml.SetDate(time.Now())
 	yml.Shop.Name = name
 	yml.Shop.Company = company
-	yml.Shop.Url = url
+	yml.Shop.URL = url
 	return yml
 }
 
@@ -55,7 +55,7 @@ func (c *Catalog) AddOffer(offer Offer) {
 type Shop struct {
 	Name            string           `xml:"name"`
 	Company         string           `xml:"company"`
-	Url             string           `xml:"url"`
+	URL             string           `xml:"url"`
 	Platform        string           `xml:"platform,omitempty"`
 	Version         string           `xml:"version,omitempty"`
 	Agency          string           `xml:"agency,omitempty"`
@@ -72,11 +72,11 @@ type Currencies struct {
 }
 
 func (cur *Currencies) add(id, rate string, plus float64) {
-	cur.Currency = append(cur.Currency, Currency{Id: id, Rate: rate, Plus: plus})
+	cur.Currency = append(cur.Currency, Currency{ID: id, Rate: rate, Plus: plus})
 }
 
 type Currency struct {
-	Id   string  `xml:"id,attr"`
+	ID   string  `xml:"id,attr"`
 	Rate string  `xml:"rate,attr"`
 	Plus float64 `xml:"plus,attr"`
 }
@@ -85,14 +85,14 @@ type Categories struct {
 	Category []Category `xml:"category"`
 }
 
-func (cat *Categories) add(id, parentId int, name string) {
-	cat.Category = append(cat.Category, Category{Id: id,
-		ParentId: parentId, Name: name})
+func (cat *Categories) add(id, parentID int, name string) {
+	cat.Category = append(cat.Category, Category{ID: id,
+		ParentID: parentID, Name: name})
 }
 
 type Category struct {
-	Id       int    `xml:"id,attr"`
-	ParentId int    `xml:"parentId,attr,omitempty"`
+	ID       int    `xml:"id,attr"`
+	ParentID int    `xml:"parentId,attr,omitempty"`
 	Name     string `xml:",innerxml"`
 }
 
@@ -168,6 +168,7 @@ type Offer struct {
 	TypePrefix           string           `xml:"typePrefix,omitempty"`
 	Vendor               string           `xml:"vendor,omitempty"`
 	VendorCode           string           `xml:"vendorCode,omitempty"`
+	TopSeller            bool             `xml:"topseller,omitempty"`
 	Model                string           `xml:"model,omitempty"`
 	Description          string           `xml:"description,omitempty"`
 	SalesNotes           string           `xml:"sales_notes,omitempty"`

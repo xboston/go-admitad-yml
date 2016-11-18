@@ -108,5 +108,5 @@ func main() {
 	ymlCat.AddOffer(offer)
 	ymlCat.AddOffer(offer2)
 
-	admitadyml.ExportToFile(ymlCat, "./yml.xml", true)
+	admitadyml.ExportToFile(ymlCat, "./admitad.xml", true)
 }
