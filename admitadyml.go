@@ -272,15 +272,15 @@ func (o Offer) Validate() error {
 	if o.Age != nil && o.Age.Unit != "" {
 		switch o.Age.Unit {
 		case "year":
-			if !isInSlice([]string{"0", "6", "12", "16", "18"}, o.Age.Value) {
-				return errors.New("Age.Value is incorrect")
+			if !AgeMap[o.Age.Value] {
+				return fmt.Errorf("Age.Value is incorrect: %s", o.Age.Value)
 			}
 		case "month":
-			if !isInSlice([]string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}, o.Age.Value) {
-				return errors.New("Age.Value is incorrect")
+			if !MonthMap[o.Age.Value] {
+				return fmt.Errorf("Age.Value is incorrect: %s", o.Age.Value)
 			}
 		default:
-			return errors.New("Age.Unit is incorrect")
+			return fmt.Errorf("Age.Unit is incorrect: %s", o.Age.Value)
 		}
 	}
 	return nil
@@ -289,13 +289,4 @@ func (o Offer) Validate() error {
 type Age struct {
 	Unit  string `xml:"unit,attr"`
 	Value string `xml:",innerxml"`
-}
-
-func isInSlice(slice []string, val string) bool {
-	for _, item := range slice {
-		if item == val {
-			return true
-		}
-	}
-	return false
 }

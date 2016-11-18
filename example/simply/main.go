@@ -55,6 +55,7 @@ func main() {
 		ManufacturerWarranty: true,
 		CountryOfOrigin:      "Япония",
 		Cpa:                  1,
+		Age:                  &admitadyml.Age{Unit: "year", Value: "6"},
 	}
 	offer.AddBarcode("0123456789012")
 	offer.AddAge("year", "18")
