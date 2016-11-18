@@ -1,4 +1,4 @@
-package goyml
+package admitadyml
 
 // Countries - allowed countries
 var Countries = map[string]bool{

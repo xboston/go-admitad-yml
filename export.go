@@ -1,4 +1,4 @@
-package goyml
+package admitadyml
 
 import (
 	"encoding/xml"

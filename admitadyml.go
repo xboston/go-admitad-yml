@@ -1,5 +1,5 @@
 // Yandex YML generator: https://yandex.ru/support/partnermarket/yml/about-yml.xml
-package goyml
+package admitadyml
 
 import (
 	"errors"
@@ -255,7 +255,7 @@ func (o Offer) Validate() error {
 	}
 
 	if o.CountryOfOrigin != "" {
-		if _, ok := Countries[o.CountryOfOrigin]; !ok {
+		if !Countries[o.CountryOfOrigin] {
 			return errors.New("CountryOfOrigin not valid")
 		}
 	}
