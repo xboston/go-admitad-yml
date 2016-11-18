@@ -148,16 +148,16 @@ const (
 // Available = true - delivery in 2 days
 // Available = false - delivery from 3 days to 2 months
 type Offer struct {
-	Id                   string           `xml:"id,attr"`
+	ID                   string           `xml:"id,attr"`
 	Bid                  uint             `xml:"bid,attr,omitempty"`
 	CBid                 uint             `xml:"cid,attr,omitempty"`
 	Type                 OfferType        `xml:"type,attr,omitempty"`
 	Available            bool             `xml:"available,attr"`
-	Url                  string           `xml:"url,omitempty"`
+	URL                  string           `xml:"url,omitempty"`
 	Price                float64          `xml:"price"`
 	OldPrice             float64          `xml:"oldprice,omitempty"`
-	CurrencyId           string           `xml:"currencyId"`
-	CategoryId           int              `xml:"categoryId"`
+	CurrencyID           string           `xml:"currencyId"`
+	CategoryID           int              `xml:"categoryId"`
 	MarketCategory       string           `xml:"market_category,omitempty"`
 	Picture              []string         `xml:"picture,omitempty"`
 	Store                bool             `xml:"store,omitempty"`
@@ -219,11 +219,11 @@ type Param struct {
 // Validate offer
 func (o Offer) Validate() error {
 
-	if strings.Index(o.Url, "?") >= 0 {
-		return fmt.Errorf("Url is incorrect: %s", o.Url)
+	if strings.Index(o.URL, "?") >= 0 {
+		return fmt.Errorf("Url is incorrect: %s", o.URL)
 	}
 
-	if utf8.RuneCountInString(o.Id) > 20 {
+	if utf8.RuneCountInString(o.ID) > 20 {
 		return errors.New("Id more than 20 cahrs")
 	}
 
@@ -239,11 +239,11 @@ func (o Offer) Validate() error {
 		return errors.New("OldPrice less than Price")
 	}
 
-	if utf8.RuneCountInString(o.CurrencyId) != 3 {
+	if utf8.RuneCountInString(o.CurrencyID) != 3 {
 		return errors.New("CurrencyId less than 3 chars")
 	}
 
-	if o.CategoryId > 999999999999999999 {
+	if o.CategoryID > 999999999999999999 {
 		return errors.New("CategoryId more than 18 cahrs")
 	}
 

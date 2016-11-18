@@ -35,14 +35,14 @@ func main() {
 
 	// Simple Offer
 	offer := admitadyml.Offer{
-		Id:                   "123",
+		ID:                   "123",
 		Available:            true,
 		Bid:                  21,
-		Url:                  "http://best.seller.ru/product_/12348",
+		URL:                  "http://best.seller.ru/product_/12348",
 		Price:                600,
 		OldPrice:             800,
-		CurrencyId:           "USD",
-		CategoryId:           6,
+		CurrencyID:           "USD",
+		CategoryID:           6,
 		Picture:              []string{"http://best.seller.ru/img/device12345.jpg"},
 		Store:                false,
 		Pickup:               true,
@@ -62,15 +62,15 @@ func main() {
 
 	// Offer vendor.model
 	offer2 := admitadyml.Offer{
-		Id:                   "12341",
+		ID:                   "12341",
 		Available:            true,
 		Type:                 admitadyml.TypeVendorModel,
 		Bid:                  13,
-		Url:                  "http://best.seller.ru/product/12344",
+		URL:                  "http://best.seller.ru/product/12344",
 		Price:                16800,
 		OldPrice:             17000,
-		CurrencyId:           "USD",
-		CategoryId:           6,
+		CurrencyID:           "USD",
+		CategoryID:           6,
 		Picture:              []string{"http://best.seller.ru/img/device12345.jpg"},
 		Store:                false,
 		Pickup:               false,
