@@ -4,7 +4,6 @@ package admitadyml
 import (
 	"errors"
 	"fmt"
-	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -250,13 +249,12 @@ func (o Offer) Validate() error {
 	}
 
 	if utf8.RuneCountInString(o.SalesNotes) > 50 {
-		log.Println(o.SalesNotes)
 		return errors.New("SalesNotes more than 50 cahrs")
 	}
 
 	if o.CountryOfOrigin != "" {
 		if !Countries[o.CountryOfOrigin] {
-			return errors.New("CountryOfOrigin not valid")
+			return fmt.Errorf("CountryOfOrigin not valid: %s", o.CountryOfOrigin)
 		}
 	}
 	if o.Age != nil && o.Age.Unit != "" {
