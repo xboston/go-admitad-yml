@@ -264,7 +264,7 @@ func (o Offer) Validate() error {
 	}
 
 	if o.CountryOfOrigin != "" {
-		if !Countries[o.CountryOfOrigin] {
+		if !CountriesMap[o.CountryOfOrigin] {
 			return fmt.Errorf("CountryOfOrigin not valid: %s", o.CountryOfOrigin)
 		}
 	}
