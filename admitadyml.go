@@ -222,24 +222,31 @@ func (o Offer) Validate() error {
 	if strings.Index(o.Url, "?") >= 0 {
 		return fmt.Errorf("Url is incorrect: %s", o.Url)
 	}
+
 	if utf8.RuneCountInString(o.Id) > 20 {
 		return errors.New("Id more than 20 cahrs")
 	}
+
 	if o.Type == TypeVendorModel && (o.Vendor == "" || o.Model == "") {
 		return errors.New("Vendor or Model is empty")
 	}
+
 	if o.Price == 0 {
 		return errors.New("Price is zero")
 	}
+
 	if o.OldPrice > 0 && o.OldPrice <= o.Price {
 		return errors.New("OldPrice less than Price")
 	}
+
 	if utf8.RuneCountInString(o.CurrencyId) != 3 {
 		return errors.New("CurrencyId less than 3 chars")
 	}
+
 	if o.CategoryId > 999999999999999999 {
 		return errors.New("CategoryId more than 18 cahrs")
 	}
+
 	for _, pic := range o.Picture {
 		if utf8.RuneCountInString(pic) > 512 {
 			return errors.New("Picture more than 512 cahrs")
@@ -261,6 +268,7 @@ func (o Offer) Validate() error {
 			return fmt.Errorf("CountryOfOrigin not valid: %s", o.CountryOfOrigin)
 		}
 	}
+
 	if o.Age != nil && o.Age.Unit != "" {
 		switch o.Age.Unit {
 		case "year":
