@@ -254,10 +254,8 @@ func (o Offer) Validate() error {
 		}
 	}
 
-	descrTrim := strings.Replace(o.Description, ",", "", -1)
-	descrTrim = strings.Replace(descrTrim, ".", "", -1)
-	if utf8.RuneCountInString(descrTrim) > 175 {
-		return errors.New("Description more than 175 cahrs")
+	if utf8.RuneCountInString(o.Description) > 3000 {
+		return errors.New("Description more than 300 cahrs")
 	}
 
 	if utf8.RuneCountInString(o.SalesNotes) > 50 {

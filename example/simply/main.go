@@ -3,35 +3,30 @@ package main
 import (
 	"fmt"
 
-	admitadyml "github.com/xboston/go-admitad-yml"
+	"github.com/xboston/go-admitad-yml"
 )
 
 func main() {
 	// Create YML
-	ymlCat := admitadyml.NewYML("BestShop", "Best online seller Inc.", "http://best.seller.ru/")
+	admitadymlCat := admitadyml.NewYML("BestShop", "Best online seller Inc.", "http://best.seller.ru/")
 
 	// Additional info
-	ymlCat.Shop.Platform = "CMS"
-	ymlCat.Shop.Version = "2.3"
-	ymlCat.Shop.Agency = "Agency"
-	ymlCat.Shop.Email = "CMS@CMS.ru"
+	admitadymlCat.Shop.Platform = "CMS"
+	admitadymlCat.Shop.Version = "2.3"
+	admitadymlCat.Shop.Agency = "Agency"
+	admitadymlCat.Shop.Email = "CMS@CMS.ru"
 
 	// id, rate, plus
-	ymlCat.AddCurrency("RUR", "1", 0)
+	admitadymlCat.AddCurrency("RUR", "1", 0)
 
 	// Categories
-	ymlCat.AddCategory(1, 0, "Книги")
-	ymlCat.AddCategory(2, 1, "Детективы")
-	ymlCat.AddCategory(3, 1, "Боевики")
-	ymlCat.AddCategory(4, 0, "Видео")
-	ymlCat.AddCategory(5, 4, "Комедии")
-	ymlCat.AddCategory(6, 0, "Принтеры")
-	ymlCat.AddCategory(7, 0, "Оргтехника")
-
-	// Delivery
-	// cost, daysFrom, daysTo (if 0 - omitted), orderBefore
-	ymlCat.AddDeliveryOption(0, 0, 0, 10)
-	ymlCat.AddDeliveryOption(0, 1, 0, 0)
+	admitadymlCat.AddCategory(1, 0, "Книги")
+	admitadymlCat.AddCategory(2, 1, "Детективы")
+	admitadymlCat.AddCategory(3, 1, "Боевики")
+	admitadymlCat.AddCategory(4, 0, "Видео")
+	admitadymlCat.AddCategory(5, 4, "Комедии")
+	admitadymlCat.AddCategory(6, 0, "Принтеры")
+	admitadymlCat.AddCategory(7, 0, "Оргтехника")
 
 	// Simple Offer
 	offer := admitadyml.Offer{
@@ -43,7 +38,7 @@ func main() {
 		OldPrice:             800,
 		CurrencyID:           "USD",
 		CategoryID:           6,
-		Picture:              []string{"http://best.seller.ru/img/device12345.jpg"},
+		Picture:              []string{"http://best.seller.ru/img/device12345.jpg", "http://best.seller.ru/img/device12.jpg"},
 		Store:                false,
 		Pickup:               true,
 		Delivery:             false,
@@ -56,6 +51,7 @@ func main() {
 		CountryOfOrigin:      "Япония",
 		Cpa:                  1,
 		Age:                  &admitadyml.Age{Unit: "year", Value: "6"},
+		TopSeller:            true,
 	}
 	offer.AddBarcode("0123456789012")
 	offer.AddAge("year", "18")
@@ -105,8 +101,8 @@ func main() {
 		fmt.Println(err.Error())
 	}
 
-	ymlCat.AddOffer(offer)
-	ymlCat.AddOffer(offer2)
+	admitadymlCat.AddOffer(offer)
+	admitadymlCat.AddOffer(offer2)
 
-	admitadyml.ExportToFile(ymlCat, "./admitad.xml", true)
+	admitadyml.ExportToFile(admitadymlCat, "./admitad.xml", true)
 }
