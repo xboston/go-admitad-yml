@@ -56,6 +56,13 @@ func main() {
 	offer.AddBarcode("0123456789012")
 	offer.AddAge("year", "18")
 
+	err := offer.Validate()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	admitadymlCat.AddOffer(offer)
+
 	// Offer vendor.model
 	offer2 := admitadyml.Offer{
 		ID:                   "12341",
@@ -92,16 +99,11 @@ func main() {
 	offer2.AddParam("Потребляемая мощность", "Вт", "20")
 	offer2.AddParam("Вес", "кг", "2.73")
 
-	err := offer.Validate()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
 	err = offer2.Validate()
 	if err != nil {
 		fmt.Println(err.Error())
 	}
 
-	admitadymlCat.AddOffer(offer)
 	admitadymlCat.AddOffer(offer2)
 
 	admitadyml.ExportToFile(admitadymlCat, "./admitad.xml", true)
